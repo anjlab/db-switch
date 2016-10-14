@@ -1,0 +1,10 @@
+test:
+  adapter: postgresql
+  database: db_switch_test_db1
+  pool: 50
+
+alternate:
+  test:
+    adapter: postgresql
+    database: db_switch_test_db2
+    pool: 50
