@@ -9,7 +9,7 @@ $LOAD_PATH.unshift File.expand_path('../spec', __FILE__)
 require 'helpers'
 require 'models'
 
-DATABASES = %w(db_switch_test_db1 db_switch_test_db2)
+DATABASES = %w[db_switch_test_db1 db_switch_test_db2].freeze
 DATABASES.each { |db| Helpers.create_database(db) }
 
 require 'active_record/railtie'

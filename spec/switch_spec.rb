@@ -54,7 +54,6 @@ describe 'db-switch' do
         else
           User.create!(name: 'Sergey')
         end
-
       end
     end.map(&:join)
 

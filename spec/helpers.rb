@@ -1,7 +1,7 @@
 module Helpers
   module_function
 
-  def self.create_database(name)
+  def create_database(name)
     # re-create database
     ActiveRecord::Base.establish_connection(adapter: 'postgresql', database: 'postgres')
     ActiveRecord::Base.connection.execute "DROP DATABASE IF EXISTS #{name}"
@@ -14,17 +14,16 @@ module Helpers
     end
   end
 
-  def self.clear_database(name)
+  def clear_database(name)
     using_db(name) do
       User.delete_all
     end
   end
 
-  def self.using_db(name)
-    if block_given?
-      ActiveRecord::Base.establish_connection(adapter: 'postgresql', database: name)
-      yield
-      ActiveRecord::Base.remove_connection
-    end
+  def using_db(name)
+    return unless block_given?
+    ActiveRecord::Base.establish_connection(adapter: 'postgresql', database: name)
+    yield
+    ActiveRecord::Base.remove_connection
   end
 end

@@ -1,8 +1,8 @@
-module DbSwitch::ActiveRecordBase
-  include DbSwitch::ThreadVariables
+module DbSwitch
+  module ActiveRecordBase
+    include DbSwitch::ThreadVariables
 
-  def connect_to(connection_name)
-    begin
+    def connect_to(connection_name)
       self.db_switch_connection_name = connection_name.to_s
       if ActiveRecord::Base.connection_handler.connected?(connection_name.to_s).nil?
         db_config = ActiveRecord::Base.configurations[connection_name.to_s]
@@ -18,9 +18,9 @@ module DbSwitch::ActiveRecordBase
     ensure
       self.db_switch_connection_name = nil
     end
-  end
 
-  def connection_specification_name
-    db_switch_connection_name || super
+    def connection_specification_name
+      db_switch_connection_name || super
+    end
   end
 end
