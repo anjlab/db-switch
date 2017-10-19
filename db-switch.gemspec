@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'pg', '~> 0.19'
   spec.add_development_dependency 'rubocop', '0.50.0'
+  spec.add_development_dependency 'appraisal', '~> 2.1'
 
   # Rails 5 dependencies
   spec.add_runtime_dependency 'activerecord', '~> 5.0'
