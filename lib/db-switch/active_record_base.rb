@@ -7,7 +7,7 @@ module DbSwitch
       if ActiveRecord::Base.connection_handler.connected?(connection_name.to_s).nil?
         db_config =
           ActiveRecord::Base.configurations[connection_name.to_s] ||
-          connection_configurations[connection_name.to_s]
+          Rails.application.config.database_configuration[connection_name.to_s]
 
         if db_config && db_config[Rails.env.to_s]
           spec =
@@ -29,10 +29,6 @@ module DbSwitch
 
     def connection_specification_name
       db_switch_connection_name || super
-    end
-
-    def connection_configurations
-      @connection_configurations ||= YAML.load_file(Rails.root.join('config/database.yml'))
     end
   end
 end
